@@ -5,7 +5,7 @@ import './styles.css'
 const compl = ["In progress...", "Done"];
 const items = ["task_item2", "task_item1"];
 
-class App extends React.Component {
+class MyToDoList extends React.Component {
   state = {
     message : "button pushed",
     list : [
@@ -43,11 +43,11 @@ class App extends React.Component {
   }
 
   change = (id) => {
-    alert(this.state.message)
-    console.log("button pushed\n")    
+    alert(this.state.message);
+    console.log("button pushed\n");   
     this.setState(cur => ({
       //something changed
-    }))
+    }));
   }
 
   Generate_item = ({props}) => {
@@ -84,4 +84,4 @@ class App extends React.Component {
   }
 }
 
-export default App
+export default MyToDoList
