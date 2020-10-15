@@ -2,18 +2,71 @@ import React from 'react'
 import './App.css'
 import './styles.css'
 
-const compl = ["Done", "In progress..."];
-const items = ["task_item1", "task_item2"];
+const compl = ["In progress...", "Done"];
+const items = ["task_item2", "task_item1"];
 
 class App extends React.Component {
   state = {
-    status : 0
+    message : "button pushed",
+    list : [
+      {
+        id: 0,
+        name: 'Git',
+        description: 'I have to read git-book',
+        completed: 1
+      },
+      {
+        id: 1,
+        name: 'Math',
+        description: 'I have to study hard',
+        completed: 0
+      },
+      {
+        id: 2,
+        name: 'Web',
+        description: 'I have to develop ToDoList',
+        completed: 0
+      },
+      {
+        id: 3,
+        name: 'Sport',
+        description: 'I have to go to a gym',
+        completed: 1
+      },
+      {
+        id: 4,
+        name: 'Household',
+        description: 'I have to wash up',
+        completed: 0
+      }
+    ]
   }
-  change = () => {
+
+  change = (id) => {
+    alert(this.state.message)
+    console.log("button pushed\n")    
     this.setState(cur => ({
-      status : 1 - cur.status
+      //something changed
     }))
   }
+
+  Generate_item = ({props}) => {
+    return (
+      <div className = {items[props.completed]}>
+        <div className = "block1">
+          <h2 className = "header2"> {props.name} </h2>
+          <p className = "description"> {props.description} </p>
+        </div>
+        <div className = "block2">
+          <p className = "status"> {compl[props.completed]} </p>
+          <button onClick = {this.change}>
+            Change status
+          </button>
+        </div>
+      </div>
+    )
+  }
+
   render() {
     return (
       <div className = "back">
@@ -22,18 +75,9 @@ class App extends React.Component {
             <h1> ToDoList </h1>
           </div>
           <br/><hr/>
-          <div className = {items[this.state.status]}>
-            <div className = "block1">
-              <h2 className = "header2"> Git </h2>
-              <p className = "description"> I have to read git-book </p>
-            </div>
-            <div className = "block2">
-              <p className = "status"> {compl[this.state.status]} </p>
-              <button onClick = {this.change}>
-                Change status
-              </button>
-            </div>
-          </div>
+          {this.state.list.map(
+            it => <this.Generate_item props = {it}/>
+          )}
         </div>
       </div>
     )
