@@ -5,9 +5,86 @@ import './styles.css'
 const compl = ["In progress...", "Done"];
 const items = ["task_item2", "task_item1"];
 
+const Generate_item = ({props, click}) => {
+  return (
+    <div className = {items[props.completed]}>
+      <div className = "block1">
+        <h2 className = "header2"> {props.name} </h2>
+        <p className = "description"> {props.description} </p>
+      </div>
+      <div className = "block2">
+        <p className = "status"> {compl[props.completed]} </p>
+        <button onClick = {() => click(props.id)}>
+          Change status
+        </button>
+      </div>
+    </div>
+  )
+}
+
+const Input_element = ({
+  label,
+  type,
+  value,
+  onChange,
+  placeholder,
+  min = "0",
+  max = "1",
+}) => {
+  return (
+    <div className = "person">
+      <label> {label} </label>
+      <input
+        type = {type}
+        value = {value}
+        onChange = {onChange}
+        placeholder = {placeholder}
+        min = {(type == "number") ? min : undefined}
+        max = {(type == "number") ? max : undefined}
+      /> <br/>
+    </div>
+  )
+}
+
+const NewCase = ({props, change, click}) => {
+  return (
+    <div className = "newCase">
+      <form>
+        <fieldset>
+          <legend> Creating Form </legend>
+          <Input_element
+            label = "Name"
+            type = "text"
+            value = {props.name}
+            onChange = {change}
+            placeholder = "name..."
+          />
+          <Input_element
+            label = "Description"
+            type = "text"
+            value = {props.description}
+            onChange = {change}
+            placeholder = "description..."
+          />
+          <Input_element
+            label = "Completed"
+            type = "number"
+            min = "0"
+            max = "1"
+            value = "0"
+            onChange = {change}
+          />
+          <button onClick = {click}>
+            Push a new case!
+          </button>
+        </fieldset>
+      </form>
+    </div>
+  )
+}
+
 class MyToDoList extends React.Component {
   state = {
-    message : "button pushed",
     list : [
       {
         id: 0,
@@ -39,32 +116,63 @@ class MyToDoList extends React.Component {
         description: 'I have to wash up',
         completed: 0
       }
-    ]
+    ],
+    list_size: 5,
+    form : {
+      name: "",
+      description: "",
+      completed: 0    
+    }
   }
 
-  change = (id) => {
-    alert(this.state.message);
-    console.log("button pushed\n");   
-    this.setState(cur => ({
-      //something changed
-    }));
+  Change = (id) => {  
+    this.setState(cur => {
+      let copy = cur.list.map(it => {
+        return ({
+          id : it.id,
+          name : it.name,
+          description : it.description,
+          completed : it.completed
+        })
+      })
+      const new_val = 1 - copy[id].completed
+      copy[id].completed = new_val
+      return {
+        list : copy,
+        list_size : cur.list_size,
+        form : cur.form
+      }
+    })
   }
 
-  Generate_item = ({props}) => {
-    return (
-      <div className = {items[props.completed]}>
-        <div className = "block1">
-          <h2 className = "header2"> {props.name} </h2>
-          <p className = "description"> {props.description} </p>
-        </div>
-        <div className = "block2">
-          <p className = "status"> {compl[props.completed]} </p>
-          <button onClick = {this.change}>
-            Change status
-          </button>
-        </div>
-      </div>
-    )
+  Input_field = (event) => {
+    const { value } = event.target
+    this.setState(cur => {
+      return {
+        list : cur.list,
+        list_size : cur.list_size,
+        form : cur.form
+      }
+    })
+  }
+
+  Push_new_item = () => {
+    this.setState(cur => {
+      const copy = [
+        ...cur.list,
+        { 
+          id : cur.list_size,
+          name : cur.form.name,
+          description : cur.form.description,
+          completed : cur.form.completed 
+        }
+      ]
+      return ({
+        list : copy,
+        list_size : cur.list_size + 1,
+        form : cur.form
+      })
+    })
   }
 
   render() {
@@ -75,9 +183,20 @@ class MyToDoList extends React.Component {
             <h1> ToDoList </h1>
           </div>
           <br/><hr/>
-          {this.state.list.map(
-            it => <this.Generate_item props = {it}/>
-          )}
+          <div>
+            {this.state.list.map(it => 
+              <Generate_item 
+                props = {it}
+                click = {this.Change}  
+              />
+            )}
+          </div>
+          <br/><hr/>
+          <NewCase
+            props = {this.state.form}
+            change = {this.Input_field}
+            click = {this.Push_new_item}
+          />
         </div>
       </div>
     )
