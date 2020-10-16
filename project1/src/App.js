@@ -125,7 +125,7 @@ class MyToDoList extends React.Component {
     }
   }
 
-  Change = (id) => {  
+  Change = (id) => {
     this.setState(cur => {
       let copy = cur.list.map(it => {
         return ({
@@ -145,7 +145,7 @@ class MyToDoList extends React.Component {
     })
   }
 
-  Input_field = (event) => {
+  Input_field = (event, field) => {
     const { value } = event.target
     this.setState(cur => {
       return {
@@ -158,7 +158,7 @@ class MyToDoList extends React.Component {
 
   Push_new_item = () => {
     this.setState(cur => {
-      const copy = [
+      const new_list = [
         ...cur.list,
         { 
           id : cur.list_size,
@@ -168,9 +168,13 @@ class MyToDoList extends React.Component {
         }
       ]
       return ({
-        list : copy,
+        list : new_list,
         list_size : cur.list_size + 1,
-        form : cur.form
+        form : {
+          name : cur.form.name,
+          description : cur.form.description,
+          completed : cur.form.completed
+        }
       })
     })
   }
