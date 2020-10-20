@@ -2,8 +2,7 @@ import React from 'react'
 import './App.css'
 import './styles.css'
 
-const compl = ["In progress...", "Done"];
-const items = ["task_item2", "task_item1"];
+const completed_status = ["In progress...", "Done"];
 
 class MyToDoList extends React.Component {
   state = {
@@ -50,15 +49,15 @@ class MyToDoList extends React.Component {
     }));
   }
 
-  Generate_item = ({props}) => {
+  GenerateItem = ({props}) => {
     return (
-      <div className = {items[props.completed]}>
+      <div className = {props.completed ? "task_item2" : "task_item1"}>
         <div className = "block1">
           <h2 className = "header2"> {props.name} </h2>
           <p className = "description"> {props.description} </p>
         </div>
         <div className = "block2">
-          <p className = "status"> {compl[props.completed]} </p>
+          <p className = "status"> {completed_status[props.completed]} </p>
           <button onClick = {this.change}>
             Change status
           </button>
@@ -76,7 +75,7 @@ class MyToDoList extends React.Component {
           </div>
           <br/><hr/>
           {this.state.list.map(
-            it => <this.Generate_item props = {it}/>
+            it => <this.GenerateItem props = {it}/>
           )}
         </div>
       </div>
