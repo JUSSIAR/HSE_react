@@ -2,42 +2,51 @@ import React from 'react'
 import './App.css'
 import './styles.css'
 import NewCase from './components/newCase/newCase.js'
-import Task from './components/task/task.js'
+import TaskList from './components/taskList/taskList.js'
+
+const listOfTasks = [
+  {
+    id: 0,
+    name: 'Git',
+    description: 'I have to read git-book',
+    completed: 1
+  },
+  {
+    id: 1,
+    name: 'Math',
+    description: 'I have to study hard',
+    completed: 0
+  },
+  {
+    id: 2,
+    name: 'Web',
+    description: 'I have to develop ToDoList',
+    completed: 0
+  },
+  {
+    id: 3,
+    name: 'Sport',
+    description: 'I have to go to a gym',
+    completed: 1
+  },
+  {
+    id: 4,
+    name: 'Household',
+    description: 'I have to wash up',
+    completed: 0
+  }
+]
 
 class MyToDoList extends React.Component {
   state = {
-    list : [
-      {
-        id: 0,
-        name: 'Git',
-        description: 'I have to read git-book',
-        completed: 1
-      },
-      {
-        id: 1,
-        name: 'Math',
-        description: 'I have to study hard',
-        completed: 0
-      },
-      {
-        id: 2,
-        name: 'Web',
-        description: 'I have to develop ToDoList',
-        completed: 0
-      },
-      {
-        id: 3,
-        name: 'Sport',
-        description: 'I have to go to a gym',
-        completed: 1
-      },
-      {
-        id: 4,
-        name: 'Household',
-        description: 'I have to wash up',
-        completed: 0
+    list : listOfTasks.map(it => {
+      return {
+        id : it.id,
+        name : it.name,
+        description : it.description,
+        completed : it.completed
       }
-    ],
+    }),
     form : {
       name: "",
       description: "" 
@@ -87,6 +96,11 @@ class MyToDoList extends React.Component {
   }
 
   pushNewItem = () => {
+    if (this.state.list.length >= 7) {
+      alert("Слишком много дел...")
+      console.log("list error\n")
+      return
+    }
     this.setState(cur => {
       const new_list = [
         ...cur.list,
@@ -110,16 +124,10 @@ class MyToDoList extends React.Component {
           <div id = "header1">
             <h1> ToDoList </h1>
           </div>
-          <br/><hr/>
-          <div>
-            {this.state.list.map(it => 
-              <Task
-                props = {it}
-                click = {this.changeStatus}  
-              />
-            )}
-          </div>
-          <br/><hr/>
+          <TaskList
+            list = {this.state.list}
+            click = {this.changeStatus}
+          />
           <NewCase
             props = {this.state.form}
             change1 = {this.changeInput1}
