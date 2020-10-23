@@ -1,4 +1,4 @@
-.task_item1 {
+.taskDone {
     border-spacing: 50px 5px;
     display: table;
     padding: 5px 30px 5px 30px;
@@ -12,7 +12,7 @@
     border: 10px solid rgb(22, 224, 22);
 }
 
-.task_item2 {
+.taskInProgress {
     border-spacing: 50px 5px;
     display: table;
     padding: 5px 30px 5px 30px;
