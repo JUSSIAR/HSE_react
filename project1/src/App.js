@@ -37,6 +37,14 @@ const listOfTasks = [
   }
 ]
 
+const validator = {
+  invalid : (id, r) => {
+    if (typeof(id) != "number")
+      return true;
+    return (id < 0) || (id >= r) 
+  }
+}
+
 class MyToDoList extends React.Component {
   state = {
     list : listOfTasks.map(it => {
@@ -54,6 +62,8 @@ class MyToDoList extends React.Component {
   }
 
   changeStatus = (id) => {
+    if (validator.invalid(id, this.state.list.length))
+      return
     this.setState(cur => {
       let copy = cur.list.map(it => {
         return {
@@ -71,24 +81,24 @@ class MyToDoList extends React.Component {
     })
   }
 
-  changeInput1 = (event) => {
+  changeNewName = (event) => {
     const { value } = event.target
     this.setState(cur => {
       return {
         form : {
+          ...cur.form,
           name : value,
-          description : cur.form.description
         }
       }
     })
   }
 
-  changeInput2 = (event) => {
+  changeNewDescription = (event) => {
     const { value } = event.target
     this.setState(cur => {
       return {
         form : {
-          name : cur.form.name,
+          ...cur.form,
           description : value
         }
       }
@@ -96,11 +106,6 @@ class MyToDoList extends React.Component {
   }
 
   pushNewItem = () => {
-    if (this.state.list.length >= 7) {
-      alert("Слишком много дел...")
-      console.log("list error\n")
-      return
-    }
     this.setState(cur => {
       const new_list = [
         ...cur.list,
@@ -130,8 +135,8 @@ class MyToDoList extends React.Component {
           />
           <NewCase
             props = {this.state.form}
-            change1 = {this.changeInput1}
-            change2 = {this.changeInput2}
+            changeName = {this.changeNewName}
+            changeDescription = {this.changeNewDescription}
             click = {this.pushNewItem}
           />
         </div>

@@ -1,26 +1,26 @@
 import React from 'react'
-import InputElement1 from '../input/input1.js'
-import InputElement2 from '../input/input2.js'
+import InputNewName from '../input/inputName.js'
+import InputNewDesciption from '../input/inputDescription.js'
 import MyButton from '../button/button.js'
 import './newCaseStyle.css'
 
 const NewCase = ({
   props, 
-  change1, 
-  change2, 
+  changeName, 
+  changeDescription, 
   click
 }) => {
   return (
     <div className = "newCase">
       <fieldset title = "Добавление нового задания">
       <legend> <h3>Creating Form</h3> </legend>
-      <InputElement1
+      <InputNewName
         value = {props.name}
-        onChange = {change1}
+        onChange = {changeName}
       />
-      <InputElement2
+      <InputNewDesciption
         value = {props.description}
-        onChange = {change2}
+        onChange = {changeDescription}
       />
       <MyButton 
         onClick = {click}

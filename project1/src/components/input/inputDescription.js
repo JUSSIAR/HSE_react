@@ -1,21 +1,21 @@
 import React from 'react'
 import './inputStyle.css'
 
-const InputElement1 = ({
+const InputNewDesciption = ({
   onChange, 
   value
 }) => {
   return (
     <div className = "person">
-      <label> Name </label>
+      <label> Description </label>
       <input
         value = {value}
         type = "text"
         onChange = {onChange}
-        placeholder = "name..."
+        placeholder = "description..."
       /> <br/>
     </div>
   )
 }
 
-export default InputElement1
+export default InputNewDesciption
