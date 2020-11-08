@@ -38,23 +38,17 @@ const listOfTasks = [
 ]
 
 const validator = {
-  invalid : (id, r) => {
+  invalid : (id, taskArr) => {
     if (typeof(id) != "number")
       return true;
-    return (id < 0) || (id >= r) 
+    const index = taskArr.findIndex((task) => (task.id === id))
+    return ((index === -1) ? undefined : index)
   }
 }
 
 class MyToDoList extends React.Component {
   state = {
-    list : listOfTasks.map(it => {
-      return {
-        id : it.id,
-        name : it.name,
-        description : it.description,
-        completed : it.completed
-      }
-    }),
+    list : listOfTasks,
     form : {
       name: "",
       description: "" 
@@ -62,7 +56,8 @@ class MyToDoList extends React.Component {
   }
 
   changeStatus = (id) => {
-    if (validator.invalid(id, this.state.list.length))
+    const checked_id = validator.invalid(id, this.state.list)
+    if (checked_id === undefined)
       return
     this.setState(cur => {
       let copy = cur.list.map(it => {
@@ -73,11 +68,9 @@ class MyToDoList extends React.Component {
           completed : it.completed
         }
       })
-      const newVal = 1 - copy[id].completed
-      copy[id].completed = newVal
-      return {
-        list : copy
-      }
+      const newVal = 1 - copy[checked_id].completed
+      copy[checked_id].completed = newVal
+      return {list : copy}
     })
   }
 
