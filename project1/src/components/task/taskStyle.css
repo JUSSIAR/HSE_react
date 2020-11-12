@@ -1,0 +1,44 @@
+.taskDone {
+    border-spacing: 50px 5px;
+    display: table;
+    padding: 5px 30px 5px 30px;
+    margin-top: 20px;
+    margin-left: 10%;
+    margin-right: 10%;
+    height: 150px;
+    width: 80%;
+    background: rgb(90, 143, 241);
+    border-radius: 5px 75px 75px 75px;
+    border: 10px solid rgb(22, 224, 22);
+}
+
+.taskInProgress {
+    border-spacing: 50px 5px;
+    display: table;
+    padding: 5px 30px 5px 30px;
+    margin-top: 20px;
+    margin-left: 10%;
+    margin-right: 10%;
+    height: 150px;
+    width: 80%;
+    background: rgb(90, 143, 241);
+    border-radius: 5px 75px 75px 75px;
+    border: 10px solid rgb(224, 79, 22);
+}
+
+.block1 {
+    display: table-cell;
+    width: 80%;
+}
+
+.block2 {
+    display: table-cell;
+    text-align: center;
+    width: 20%;
+}
+
+.description {
+    font-size: 15;
+    font-style: italic;
+    color: yellow;
+}

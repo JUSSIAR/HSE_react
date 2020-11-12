@@ -1,0 +1,14 @@
+fieldset {
+    border: 5px solid rgb(79, 79, 212);
+    border-radius: 20px;
+}
+
+legend {
+    font-style: italic;
+    border: 5px solid rgb(79, 79, 212);
+    border-radius: 10px;
+}
+
+.newCase {
+    font-size: 20;
+}
