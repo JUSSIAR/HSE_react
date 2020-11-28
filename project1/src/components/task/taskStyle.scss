@@ -1,25 +1,18 @@
 @import '../../styleModules/var.module.scss';
 @import '../../styleModules/mixins.module.scss';
 
-@mixin task {
-    padding: 15px;
-    @include flexSettings();
-    margin-top: 1rem;
-    width: 220px;
-    height: 320px;
-    background: $primaryColor;
-    border-radius: 5px 75px 75px 75px;
+@mixin bordRad($rad...) {
+    border-radius: $rad;
 }
 
 .task {
-    &Done {
-        @include task;
-        border: 10px solid rgb(22, 224, 22);
-    }
-    &InProgress {
-        @include task;
-        border: 10px solid rgb(224, 79, 22);
-    }
+    @include flexSettings();
+    margin-top: 1rem;
+    padding: 15px;
+    width: 220px;
+    height: 320px;
+    background: $primaryColor;
+    @include bordRad(5px 75px 75px 75px);
 }
 
 .block1 {
@@ -46,13 +39,11 @@
 
 @media (min-width: 800px) {
     .task {
-        &Done, &InProgress {
-            flex-direction: row;
-            width: 700px;
-            height: 150px;
-            margin-left: 1rem;
-            margin-right: 1rem;
-        }
+        flex-direction: row;
+        width: 700px;
+        height: 150px;
+        margin-left: 1rem;
+        margin-right: 1rem;
     }
     .block1 {
         text-align: left;

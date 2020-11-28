@@ -1,0 +1,12 @@
+@import '../../styleModules/var.module.scss';
+@import '../../styleModules/mixins.module.scss';
+
+$Done: rgb(22, 224, 22);
+$InProgress: rgb(224, 79, 22);
+
+@mixin bordClr($clr: $Done) {border: 10px solid $clr;}
+
+.task {
+    &Done {@include bordClr($clr: $Done);}
+    &InProgress {@include bordClr($clr: $InProgress);}
+}
