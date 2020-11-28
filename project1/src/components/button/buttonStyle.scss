@@ -1,0 +1,23 @@
+@import '../../styleModules/var.module.scss';
+@import '../../styleModules/mixins.module.scss';
+
+$buttonBack: rgb(33, 60, 211);
+$buttonBackHover: rgb(0, 26, 73);
+$buttonShadHover: #0d09d6;
+$buttonText: white;
+
+.Button {
+    background: $buttonBack;
+    width: 150px;
+    height: 30px;
+    color: $buttonText;
+    border-radius: 10px;
+    margin: 5px;
+    &:hover {
+        background: $buttonBackHover;
+        position: relative;
+        box-shadow: 0px 0px 8px 2px $buttonShadHover;
+    }
+    &:active {}
+    &:visited {}
+}

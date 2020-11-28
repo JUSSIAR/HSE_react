@@ -1,6 +1,6 @@
 import React from 'react'
 import './App.css'
-import './styles.css'
+import './styles.scss'
 import NewCase from './components/newCase/newCase.js'
 import TaskList from './components/taskList/taskList.js'
 
@@ -115,6 +115,14 @@ class MyToDoList extends React.Component {
     })
   }
 
+  eraseTask = (id) => {
+    this.setState(cur => {
+      return {list : cur.list.filter(function(obj) {
+        return (obj.id !== id);
+      })}
+    })
+  }
+
   render() {
     return (
       <div className = "back">
@@ -125,6 +133,7 @@ class MyToDoList extends React.Component {
           <TaskList
             list = {this.state.list}
             click = {this.changeStatus}
+            erase = {this.eraseTask}
           />
           <NewCase
             props = {this.state.form}

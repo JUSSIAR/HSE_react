@@ -1,0 +1,18 @@
+@import '../../styleModules/var.module.scss';
+@import '../../styleModules/mixins.module.scss';
+
+.TaskList {
+    position: relative;
+    @include flexSettings();
+    //align-items: center;
+    & h3 {
+        @include fontSettings (
+            $fsz: 45,
+            $fst: italic,
+            $ffm: Arial,
+            $fwg: bold,
+            $clr: pink
+        );
+        text-align: center;
+    }
+}

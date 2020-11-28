@@ -1,0 +1,11 @@
+@import '../../styleModules/var.module.scss';
+@import '../../styleModules/mixins.module.scss';
+
+label {
+    @include fontSettings (
+        $fsz: 25,
+        $fst: italic,
+        $ffm: Arial,
+        $clr: white
+    )
+}

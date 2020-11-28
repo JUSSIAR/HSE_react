@@ -1,5 +1,5 @@
 import React from 'react'
-import './buttonStyle.css'
+import './buttonStyle.scss'
 
 const MyButton = ({
   onClick,

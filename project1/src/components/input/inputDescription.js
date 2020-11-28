@@ -1,5 +1,5 @@
 import React from 'react'
-import './inputStyle.css'
+import './inputStyle.scss'
 
 const InputNewDesciption = ({
   onChange, 

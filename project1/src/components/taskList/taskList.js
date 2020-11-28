@@ -1,21 +1,27 @@
 import React from 'react'
 import Task from '../task/task.js'
-import './taskListStyle.css'
+import './taskListStyle.scss'
 
-const TaskList = ({list, click}) => {
+const TaskList = ({list, click, erase}) => {
   return (
+    <>
+    <div><br/><hr/></div>
     <div className = "TaskList">
-      <br/><hr/>
       <div>
-        {list.map(it => 
-          <Task
-            props = {it}
-            click = {click}  
-          />
-        )}
+        {(list.length !== 0)
+          ? list.map(it => 
+              <Task
+                props = {it}
+                click = {click}
+                onClick = {erase}
+              />
+            )
+          : <h3> No any tasks... </h3>
+        }
       </div>
-      <br/><hr/>
     </div>
+    <div><br/><hr/></div>
+    </>
   )
 }
 

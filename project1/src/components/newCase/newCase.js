@@ -2,7 +2,7 @@ import React from 'react'
 import InputNewName from '../input/inputName.js'
 import InputNewDesciption from '../input/inputDescription.js'
 import MyButton from '../button/button.js'
-import './newCaseStyle.css'
+import './newCaseStyle.scss'
 
 const NewCase = ({
   props, 
