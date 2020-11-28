@@ -6,13 +6,14 @@ const InputNewDesciption = ({
   value
 }) => {
   return (
-    <div className = "person">
-      <label> Description </label>
+    <div className = "personD">
+      {/* <label> Description </label> <br/> */}
       <input
+        className = "myinp"
         value = {value}
         type = "text"
         onChange = {onChange}
-        placeholder = "description..."
+        placeholder = "description"
       /> <br/>
     </div>
   )

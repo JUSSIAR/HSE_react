@@ -8,16 +8,21 @@
     @include flexSettings (
         $fd: row,
         $jc: space-around,
-        $ai: center,
+        $ai: center
     );
 }
 
 .content {
-    margin-bottom: 610px;
+    margin-bottom: 900px;
     margin-top: 2rem;
     background: $contrastColor;
-    border: 3px solid rgb(47, 50, 255);
-    border-radius: 20px;
+    //border: 3px solid rgb(47, 50, 255);
+    //border-radius: 20px;
+    @include borderSettings(
+        $clr: white,
+        $rad: 20px,
+        $wdt: 2px
+    );
     font-weight: lighter;
     @include flexSettings ($fb: 60%);
 }

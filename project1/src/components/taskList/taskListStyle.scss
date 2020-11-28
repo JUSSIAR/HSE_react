@@ -2,9 +2,10 @@
 @import '../../styleModules/mixins.module.scss';
 
 .TaskList {
-    position: relative;
-    @include flexSettings();
-    //align-items: center;
+    @include flexSettings(
+        $ai: center,
+        $fb: 100%
+    );
     & h3 {
         @include fontSettings (
             $fsz: 45,
