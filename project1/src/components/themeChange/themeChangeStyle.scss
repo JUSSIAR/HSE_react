@@ -1,0 +1,11 @@
+.themes {
+    margin-left: 20%;
+    height: 24px;
+    background: black;
+    width: 60%;
+    & > select {
+        width: 60%;
+        float: right;
+        margin: 2px;
+    }
+}

@@ -38,7 +38,7 @@ const Task = ({props, click, onClick}) => {
         <p className = "description"> {props.description} </p>
       </div>
       <div className = "block2">
-        <p className = "status"> {(props.completed == 0) ? "In progress..." : "Done"} </p>
+        <p className = "status"> {(props.completed === 0) ? "In progress..." : "Done"} </p>
         <MyButton 
           onClick = {click}
           index = {props.id}

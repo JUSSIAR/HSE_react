@@ -5,7 +5,7 @@ const MyButton = ({
   onClick,
   index,
   value
-}) => ((index != undefined)
+}) => ((index !== undefined)
   ? <button onClick = {() => onClick(index)} className = "Button">
       {value}
     </button>
