@@ -1,5 +1,5 @@
-import React from 'react'
-import './buttonStyle.scss'
+import React from 'react';
+import './buttonStyle.scss';
 
 const MyButton = ({
   onClick,
@@ -14,4 +14,4 @@ const MyButton = ({
     </button>
 )
 
-export default MyButton
+export default MyButton;

@@ -2,7 +2,7 @@ import React from 'react';
 import './themeChangeStyle.scss';
 
 import { connect } from "react-redux";
-import { themeChange } from "../../actions/theme";
+import { actionChangeTheme } from "../../actions/theme";
 
 import { defaultTheme, winterTheme } from '../../data/themes';
 
@@ -11,7 +11,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  dispatchOnThemeChange: (theme) => dispatch(themeChange(theme))
+  dispatchOnThemeChange: (theme) => dispatch(actionChangeTheme(theme))
 });
 
 class Themes extends React.Component {

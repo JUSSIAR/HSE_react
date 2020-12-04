@@ -1,11 +1,11 @@
-import React from 'react'
-import './taskStyle.scss'
+import React from 'react';
+import './taskStyle.scss';
 
-import classNames from 'classnames/bind'
-import styles from './taskStyleCompl.module.scss'
+import classNames from 'classnames/bind';
+import styles from './taskStyleCompl.module.scss';
 
-import MyButton from '../button/button.js'
-import logo from '../../images/orig.png'
+import MyButton from '../button/button.js';
+import logo from '../../images/orig.png';
 
 const cx = classNames.bind(styles);
 
@@ -16,7 +16,7 @@ const Task = ({props, click, onClick}) => {
   const STYLE = ((props.completed === 1) 
     ? DONE
     : PROGR
-  )
+  );
   return (
     <div className = {
       // (props.completed === 1) ? "taskDone" : "taskInProgress"
@@ -49,4 +49,4 @@ const Task = ({props, click, onClick}) => {
   )
 }
 
-export default Task
+export default Task;

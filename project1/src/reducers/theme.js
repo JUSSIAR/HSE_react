@@ -1,4 +1,3 @@
-import { bindActionCreators } from 'redux';
 import { getInitState } from '../data/initialState';
 import { change_theme } from '../data/actiontypes';
 
