@@ -1,0 +1,14 @@
+@import '../../styleModules/var.module.scss';
+@import '../../styleModules/mixins.module.scss';
+
+#infoHeader {
+    @include header1;
+}
+
+.info {
+    text-align: center;
+    @include fontSettings (
+        $fsz: 40px,
+        $clr: white
+    );
+}

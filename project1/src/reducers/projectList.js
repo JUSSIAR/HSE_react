@@ -35,6 +35,14 @@ const newIndex = (arr) => {
   return result + 1;
 }
 
+const newProjectIndex = (arr) => {
+  let result = -1;
+  for (let idx = 0; idx < arr.length; idx++)
+    result = max(result, arr[idx].projectId);
+  //console.log(result);
+  return result + 1;
+}
+
 const makeCopy = (arr) => {
   let copy = arr.map(it => {
     return {
@@ -50,7 +58,7 @@ const makeCopy = (arr) => {
       })
     }
   })
-  return copy
+  return copy;
 }
 
 export const projectListReducer = (state = getInitState(), action) => {
@@ -82,15 +90,21 @@ export const projectListReducer = (state = getInitState(), action) => {
       if (checked_projectId === undefined)
         return state;
       let copy = makeCopy(listToChange);
+      // console.log(copy[checked_projectId].tasks.length);
       copy[checked_projectId].tasks.push({ 
-        id : newIndex(state.list),
-        name : action.payload.name,
-        description : action.payload.description,
+        id : newIndex(listToChange[checked_projectId].tasks),
+        name : action.payload.item.name,
+        description : action.payload.item.description,
         completed : 0
       });
+      // console.log(copy[checked_projectId].tasks.length);
+      // console.log(checked_projectId);
+      // console.log(copy[checked_projectId].tasks[
+      //   copy[checked_projectId].tasks.length - 1
+      // ].name);
       return {
         ...state,
-        list : copy
+        projectList : copy
       };
     }
 
@@ -115,7 +129,18 @@ export const projectListReducer = (state = getInitState(), action) => {
     }
 
     case push_new_project: {
-      return state;
+      const new_list = [
+        ...state.projectList,
+        {
+          projectName : action.payload,
+          projectId : newProjectIndex(state.projectList),
+          tasks: []
+        }
+      ];
+      return {
+        ...state,
+        projectList : new_list
+      };
     }
 
     default: {

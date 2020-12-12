@@ -8,6 +8,8 @@ import { connect } from 'react-redux';
 
 import { actionPushNewItem } from '../../actions/pushNewItem';
 
+import { withRouter } from 'react-router-dom';
+
 const mapStateToProps = (state) => ({
   projects : state.projectList.projectList
 });
@@ -17,6 +19,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const NewCaseComp = ({
+  index,
   props, 
   changeName, 
   changeDescription,
@@ -24,7 +27,7 @@ const NewCaseComp = ({
 }) => {
 
   const click = () => {
-    dispatchOnPushNewItem(props);
+    dispatchOnPushNewItem(Number(index), props);
   }
 
   return (

@@ -4,14 +4,25 @@ import { Link } from 'react-router-dom';
 import './projectListStyle.scss'
 
 import { connect } from "react-redux";
+import NewProject from '../newProject/newProject.js';
 
 const mapStateToProps = (state) => ({
   projects : state.projectList.projectList
 });
 
 class ProjectList extends React.Component {
+  state = {
+    projectName : ""
+  }
+
+  changeName = (event) => {
+    const { value } = event.target;
+    this.setState({
+      projectName: value
+    })
+  }
+
   render() {
-    const gen = this.props.projects;
     return (
       <React.StrictMode>
         
@@ -40,6 +51,11 @@ class ProjectList extends React.Component {
         </div>
 
         <GWLine/>
+        
+        <NewProject
+          projectName = {this.state.projectName}
+          changeName = {this.changeName}
+        />
 
         <br/>
         <Link to="/" className="linkToHome"> На главную </Link>

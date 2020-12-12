@@ -6,6 +6,7 @@ import Err404Page from '../err404/err404.js';
 import Project from '../project/project.js';
 import ProjectList from '../projectList/projectList.js';
 import StartPage from '../startPage/startPage.js';
+import Info from '../info/info.js';
 
 import { defaultTheme, winterTheme } from '../../data/themes';
 import classNames from 'classnames/bind';
@@ -37,6 +38,7 @@ class MainComp extends React.Component {
             <Switch>
               <Route exact path="/" component={StartPage} />
               <Route exact path="/projects" component={ProjectList} />
+              <Route exact path="/info" component={Info} />
               <Route path="/projects/:projectId/" component={Project} />
 
               <Route exact path="/404" component={Err404Page} />
