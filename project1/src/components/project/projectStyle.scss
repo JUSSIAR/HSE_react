@@ -1,0 +1,6 @@
+@import '../../styleModules/var.module.scss';
+@import '../../styleModules/mixins.module.scss';
+
+#header1 {
+    @include header1;
+}

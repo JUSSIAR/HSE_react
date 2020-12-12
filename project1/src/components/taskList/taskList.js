@@ -8,53 +8,48 @@ import { actionChangeStatus } from "../../actions/changeStatus";
 import { actionEraseTask } from "../../actions/eraseTask";
 
 const mapStateToProps = (state) => ({
-  list : state.list.list
+  projects : state.projectList.projectList
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  dispatchOnChangeStatus: (id) => dispatch(actionChangeStatus(id)),
-  dispatchOnEraseTask: (id) => dispatch(actionEraseTask(id))
+  dispatchOnChangeStatus: (projectId, taskId) => dispatch(actionChangeStatus(projectId, taskId)),
+  dispatchOnEraseTask: (projectId, taskId) => dispatch(actionEraseTask(projectId, taskId))
 })
 
 const TaskListComp = ({
-  list,
+  projectIdx,
+  projects,
   dispatchOnChangeStatus,
   dispatchOnEraseTask
 }) => {
 
-  const eraseTask = (id) => {
-    dispatchOnEraseTask(id);
+  const eraseTask = (projectId, taskId) => {
+    dispatchOnEraseTask(projectId, taskId);
   }
 
-  const changeStatus = (id) => {
-    dispatchOnChangeStatus(id);
+  const changeStatus = (projectId, taskId) => {
+    dispatchOnChangeStatus(projectId, taskId);
   }
 
+  const index = projects.findIndex((proj) => (proj.projectId === Number(projectIdx)));
   return (
-    <>
-      <div>
-        <br/>
-        <hr/>
-      </div>
+    <React.StrictMode>
       <div className = "TaskList">
         <div>
-          {(list.length !== 0)
-            ? list.map(it => 
-                <Task
-                  props = {it}
-                  click = {changeStatus}
-                  onClick = {eraseTask}
-                />
-              )
+          {(index !== -1 && projects[index].tasks.length > 0)
+            ? projects[index].tasks.map(it =>
+              <Task
+                props = {it}
+                click = {changeStatus}
+                onClick = {eraseTask}
+                projectId = {Number(projectIdx)}
+              />
+            )
             : <h3> No any tasks... </h3>
-          }
+           }
         </div>
       </div>
-      <div>
-        <br/>
-        <hr/>
-      </div>
-    </>
+    </React.StrictMode>
   )
 }
 

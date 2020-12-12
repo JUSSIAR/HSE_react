@@ -9,11 +9,11 @@ import { connect } from 'react-redux';
 import { actionPushNewItem } from '../../actions/pushNewItem';
 
 const mapStateToProps = (state) => ({
-  list : state.list.list
+  projects : state.projectList.projectList
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  dispatchOnPushNewItem: (item) => dispatch(actionPushNewItem(item))
+  dispatchOnPushNewItem: (projectId, item) => dispatch(actionPushNewItem(projectId, item))
 });
 
 const NewCaseComp = ({
@@ -41,7 +41,7 @@ const NewCaseComp = ({
       />
       <MyButton 
         onClick = {click}
-        index = {undefined}
+        taskId = {undefined}
         value = "Push a new case!"
       />
       </fieldset>

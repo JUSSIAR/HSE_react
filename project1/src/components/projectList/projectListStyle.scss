@@ -1,0 +1,18 @@
+@import '../../styleModules/var.module.scss';
+@import '../../styleModules/mixins.module.scss';
+
+#projectListHeader {
+    @include header1;
+}
+
+.linkToProject {
+    @include myLink();
+}
+
+.projectList {
+    padding: 2rem;
+    & > ul {
+        //list-style-type: disc;
+        list-style-image: url("../../images/point.png");
+    }
+}

@@ -12,7 +12,12 @@ const cx = classNames.bind(styles);
 const DONE = "Done";
 const PROGR = "InProgress";
 
-const Task = ({props, click, onClick}) => {
+const Task = ({
+  props,
+  click,
+  onClick,
+  projectId
+}) => {
   const STYLE = ((props.completed === 1) 
     ? DONE
     : PROGR
@@ -31,7 +36,7 @@ const Task = ({props, click, onClick}) => {
         src={logo}
         width="20px"
         height="20px"
-        onClick={() => onClick(props.id)}
+        onClick={() => onClick(projectId, props.id)}
       />
       <div className = "block1">
         <h2 className = "header2"> {props.name} </h2>
@@ -41,7 +46,8 @@ const Task = ({props, click, onClick}) => {
         <p className = "status"> {(props.completed === 0) ? "In progress..." : "Done"} </p>
         <MyButton 
           onClick = {click}
-          index = {props.id}
+          projectId = {projectId}
+          taskId = {props.id}
           value = "Change status"
         />
       </div>

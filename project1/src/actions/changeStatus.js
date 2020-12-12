@@ -1,6 +1,9 @@
 import { change_status } from '../data/actiontypes';
 
-export const actionChangeStatus = (id) => ({
+export const actionChangeStatus = (projectId, taskId) => ({
     type: change_status,
-    payload: id
+    payload: {
+        projectId: projectId, 
+        taskId: taskId
+    }
 });

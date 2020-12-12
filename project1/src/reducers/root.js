@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
 import { themeReducer } from './theme';
-import { taskListReducer } from './taskList';
+import { projectListReducer } from './projectList';
 
 export const rootReducer = combineReducers({
     theme : themeReducer,
-    list : taskListReducer
+    projectList : projectListReducer
 });

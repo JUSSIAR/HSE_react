@@ -1,6 +1,9 @@
 import { erase_task } from '../data/actiontypes';
 
-export const actionEraseTask = (id) => ({
+export const actionEraseTask = (projectId, taskId) => ({
     type: erase_task,
-    payload: id
+    payload: {
+        projectId: projectId, 
+        taskId: taskId
+    }
 })

@@ -1,5 +1,5 @@
-import React from 'react'
-import './inputStyle.scss'
+import React from 'react';
+import './inputStyle.scss';
 
 const InputNewDesciption = ({
   onChange, 
@@ -19,4 +19,4 @@ const InputNewDesciption = ({
   )
 }
 
-export default InputNewDesciption
+export default InputNewDesciption;
