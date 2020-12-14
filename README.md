@@ -1,4 +1,5 @@
-# HSE_react
+# ReactJS Project
+## HSE Course 
 
 javascript
 web-programming 
