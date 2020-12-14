@@ -1,16 +1,5 @@
-@import './styleModules/var.module.scss';
-@import './styleModules/mixins.module.scss';
-
-.back {
-    @include fixedBackImage("../images/winter_bc.jpg");
-    width: 100%;
-    height: 100%;
-    @include flexSettings (
-        $fd: row,
-        $jc: space-around,
-        $ai: center
-    );
-}
+@import '../../styleModules/var.module.scss';
+@import '../../styleModules/mixins.module.scss';
 
 .content {
     margin-bottom: 900px;

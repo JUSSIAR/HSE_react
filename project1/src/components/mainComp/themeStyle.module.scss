@@ -1,0 +1,18 @@
+@import '../../styleModules/var.module.scss';
+@import '../../styleModules/mixins.module.scss';
+
+.back {
+    width: 100%;
+    height: 100%;
+    @include flexSettings (
+        $fd: row,
+        $jc: space-around,
+        $ai: center
+    );
+    &-Default {
+        background: linear-gradient(-20deg,  #8a847e, #a3a7cc);
+    }
+    &-Winter {
+        @include fixedBackImage("../images/winter_bc.jpg");
+    }
+}

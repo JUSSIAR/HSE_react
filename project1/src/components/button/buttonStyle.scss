@@ -19,8 +19,6 @@ $buttonText: white;
         box-shadow: 0px 0px 8px 2px $buttonShadHover;
     }
     &:active {
-        width: 154px;
-        height: 34px;
         box-shadow: 0px 0px 0px 0px $buttonShadHover;
     }
 }

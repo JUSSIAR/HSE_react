@@ -1,11 +1,11 @@
-import React from 'react'
-import './buttonStyle.scss'
+import React from 'react';
+import './buttonStyle.scss';
 
 const MyButton = ({
   onClick,
   index,
   value
-}) => ((index != undefined)
+}) => ((index !== undefined)
   ? <button onClick = {() => onClick(index)} className = "Button">
       {value}
     </button>
@@ -14,4 +14,4 @@ const MyButton = ({
     </button>
 )
 
-export default MyButton
+export default MyButton;
