@@ -1,0 +1,75 @@
+@import '../../styleModules/var.module.scss';
+@import '../../styleModules/mixins.module.scss';
+
+@mixin bordRad($rad...) {
+    border-radius: $rad;
+}
+
+.task {
+    @include flexSettings();
+    margin-top: 1rem;
+    padding: 15px;
+    width: 220px;
+    height: 320px;
+    background: $primaryColor;
+    @include bordRad(5px 75px 75px 75px);
+}
+
+.block1 {
+    @include flexSettings();
+    text-align: center;
+    @include fontSettings (
+        $fsz: 35,
+        $ffm: Arial,
+        $fwg: lighter,
+        $clr: black
+    )
+}
+
+.block2 {
+    @include flexSettings($ai: center);
+    text-align: center;
+    @include fontSettings (
+        $fsz: 35,
+        $ffm: Arial,
+        $fwg: lighter,
+        $clr: black
+    )
+}
+
+@media (min-width: 800px) {
+    .task {
+        flex-direction: row;
+        width: 700px;
+        height: 150px;
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+    .block1 {
+        text-align: left;
+        flex: 5;
+    }
+    .block2 {
+        flex: 2;
+    }
+}
+
+
+.description {
+    @include fontSettings (
+        $fsz: 25,
+        $fst: italic,
+        $ffm: Arial,
+        $fwg: lighter,
+        $clr: black
+    )
+}
+
+#ready {
+    margin-right: 5px;
+    width: 40px;
+    height: 40px;
+    &:hover {
+        box-shadow: 0px 0px 12px 8px rgba(13, 246, 129, 0.897);
+    }
+}

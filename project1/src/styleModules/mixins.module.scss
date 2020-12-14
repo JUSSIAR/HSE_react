@@ -1,0 +1,47 @@
+@import './var.module.scss';
+
+@mixin fixedBackImage ($myUrl) {
+    background: url($myUrl);
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+@mixin flexSettings (
+    $fd: column,
+    $jc: space-around,
+    $ai: stretch,
+    $fb: 100%,
+    $wp: nowrap,
+    $ord: 0
+) {
+    display: flex;
+    flex-direction: $fd;
+    justify-content: $jc;
+    align-items: $ai;
+    flex-basis: $fb;
+    wrap: $wp;
+    order: $ord;
+}
+
+@mixin fontSettings (
+    $fsz: 25,
+    $fst: normal,
+    $ffm: 'Times New Roman',
+    $fwg: lighter,
+    $clr: black
+) {
+    font-size: $fsz;
+    font-style: $fst;
+    font-family: $ffm;
+    font-weight: $fwg;
+    color: $clr;
+}
+
+@mixin borderSettings (
+    $wdt: 2px,
+    $rad: 1px,
+    $clr: black
+) {
+    border: $wdt solid $clr;
+    border-radius: $rad;
+}

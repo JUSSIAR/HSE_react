@@ -1,18 +1,19 @@
 import React from 'react'
-import './inputStyle.css'
+import './inputStyle.scss'
 
 const InputNewName = ({
   onChange, 
   value
 }) => {
   return (
-    <div className = "person">
-      <label> Name </label>
+    <div className = "personN">
+      {/* <label> Name </label> <br/> */}
       <input
+        className = "myinp"
         value = {value}
         type = "text"
         onChange = {onChange}
-        placeholder = "name..."
+        placeholder = "name"
       /> <br/>
     </div>
   )

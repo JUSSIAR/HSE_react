@@ -1,0 +1,28 @@
+@import '../../styleModules/var.module.scss';
+@import '../../styleModules/mixins.module.scss';
+
+label {
+    @include fontSettings (
+        $fsz: 25,
+        $fst: italic,
+        $ffm: Arial,
+        $clr: white
+    )
+}
+
+.myinp {
+    height: 30px;
+    width: 200px;
+    @include borderSettings (
+        $wdt: 3px,
+        $rad: 5px,
+        $clr: $primaryColor
+    );
+    border-radius: 1px 10px 10px 10px;
+}
+
+.person {
+    &N > .myinp{margin: 1rem 0rem 1rem 0rem;}
+    &D > .myinp{margin: 0rem 0rem 1rem 0rem;}
+}
+
