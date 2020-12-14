@@ -1,0 +1,60 @@
+@import '../../styleModules/var.module.scss';
+@import '../../styleModules/mixins.module.scss';
+
+#errHeader {
+    @include header1;
+}
+
+.four04 {
+    text-align: center;
+    @include fontSettings (
+        $fsz: 70px,
+        $clr: white
+    );
+}
+
+.aroundErr {
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+}
+
+.errImage {
+    &1, &2 {
+        width: 200px;
+        height: 200px;
+        background-color: transparent;
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .errImage1 {
+        animation: spinner1 infinite 5s linear;
+    }
+}    
+@keyframes spinner1 {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(-360deg);
+        background-color: transparent;
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .errImage2 {
+        animation: spinner2 infinite 5s linear;
+    }
+}    
+
+@keyframes spinner2 {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+        background-color: transparent;
+    }
+}
+

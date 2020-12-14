@@ -3,10 +3,11 @@ import './buttonStyle.scss';
 
 const MyButton = ({
   onClick,
-  index,
+  projectId,
+  taskId,
   value
-}) => ((index !== undefined)
-  ? <button onClick = {() => onClick(index)} className = "Button">
+}) => ((taskId !== undefined)
+  ? <button onClick = {() => onClick(projectId, taskId)} className = "Button">
       {value}
     </button>
   : <button onClick = {onClick} className = "Button">

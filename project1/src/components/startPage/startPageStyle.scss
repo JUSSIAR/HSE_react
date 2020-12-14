@@ -1,0 +1,17 @@
+@import '../../styleModules/var.module.scss';
+@import '../../styleModules/mixins.module.scss';
+
+#startHeader {
+    @include header1;
+}
+
+#routerId {
+    & > ul {
+        list-style-type: none;
+    }
+}
+
+
+.route1 {
+    @include myLink();
+}

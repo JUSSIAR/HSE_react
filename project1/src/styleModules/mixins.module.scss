@@ -24,7 +24,7 @@
 }
 
 @mixin fontSettings (
-    $fsz: 25,
+    $fsz: 25px,
     $fst: normal,
     $ffm: 'Times New Roman',
     $fwg: lighter,
@@ -44,4 +44,33 @@
 ) {
     border: $wdt solid $clr;
     border-radius: $rad;
+}
+
+@mixin header1 {
+    text-align: center;
+    @include fontSettings(
+        $fsz: 50,
+        $fst: normal,
+        $ffm: Arial,
+        $fwg: bold,
+        $clr: white
+    );
+}
+
+@mixin myLink(
+    $firstColor: white,
+    $secondColor: rgb(101, 141, 233)
+) {
+    text-decoration: none;
+    @include fontSettings(
+        $fsz: 30px,
+        $clr: $firstColor
+    );
+    &:hover {
+        color: $secondColor;
+    }
+    &:active { 
+        color: $secondColor;
+        text-shadow: 0px 0px 4px 4px black;
+    }
 }
