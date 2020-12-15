@@ -1,0 +1,224 @@
+/*===== ТЕГИ =====*/
+
+body {
+    margin: 0px;
+    padding: 0px;
+    background: linear-gradient(-20deg, #65d2e6, #010529);
+}
+
+div {
+	display: block;
+}
+
+ul {
+    list-style-type: none;
+}
+
+/*==========*/
+
+
+
+/*===== ЗАГОЛОВОК =====*/
+
+#header {
+    z-index: 2;
+    position: fixed;
+    margin: 0px;
+    margin-top: -20px;
+    padding: 15px 5px 15px 5px;  
+    background: linear-gradient(20deg, #bcf7f7, #3022b1);
+    font-style: italic;
+    height: 120px;
+    width: 100%;
+}
+
+#head_text {
+    color: #fff;
+	font-size: 70;
+	margin: 5px;
+    position: relative;
+    justify-content: center;
+    text-align: center;
+}
+
+#mail_box {
+    text-align: right;
+    margin: 3px 12px 3px 12px;
+}
+
+#mail {
+    color: #fcc75d;
+	font-size: 20;
+	text-decoration: none;
+}
+
+#mail:hover {
+    color: #f5e4c1;
+    font-size: 22;
+}
+
+/*==========*/
+
+
+
+/*===== МЕНЮ =====*/
+
+#menu {
+    font-style: italic;
+    z-index: 2;
+    background: linear-gradient(160deg, #bcf7f7, #0c0074);
+    position: fixed;
+    margin-top: 140px;
+    margin-left: 10px;
+    height: 100%;
+    width: 25%;
+}
+
+.menu_list {
+    font-size: 30;
+    text-align: center;
+    color: #3a347c;
+}
+
+.items {
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+}
+
+.item_bg {
+    background: rgba(0, 73, 182, 0.541);
+    position: relative;
+    width: 90%;
+    height: 50px;
+    margin: 5px;
+}
+
+.item_bg:hover {
+    background: rgb(0, 26, 73);
+    position: relative;
+    box-shadow: 0px 0px 8px 2px #000399;
+}
+
+.point_item {
+    text-decoration: none;
+    color: rgb(227, 234, 243);
+    text-align: center;
+    font-size: 18;
+}
+
+.item_bg:hover .point_item{
+    color: rgb(255, 255, 255);
+}
+
+.item_pos {
+    padding-top: 11px;
+    position: relative;
+    vertical-align: center;
+    text-align: center;
+}
+
+#move_up {
+    z-index: 3;
+}
+
+#move_up_text {
+    font-size: 20;
+    text-align: center;
+    color: #ffffffbd;
+    text-decoration: none;
+}
+
+#move_up_text:hover {
+    color: #00010af8;
+}
+
+/*==========*/
+
+
+
+/*===== КОНТЕНТ =====*/
+
+.ffield {
+    padding-top: 130px;
+    padding-left: 30%;
+    padding-right: 4%;
+    z-index: 1;
+    color: whitesmoke;
+}
+
+.title_of_page {
+    margin: 10px;
+}
+
+.title_text {
+    font-size: 50;
+    text-align: center;
+}
+
+.first_article {
+    border-radius: 5px 100px 5px 100px;
+    height: 200px;  
+    margin: 0px 40px 40px 40px;
+    background: rgb(80, 162, 238);
+    border: 3px solid rgb(255, 255, 255);
+}
+
+.text1 {
+    font-size: 60;
+    color: black;
+    padding-top: 26px;
+    text-align: center;
+}
+
+.second_article {
+    width: 100%;
+    display: table;  
+    border-spacing: 40px 5px; 
+    margin: 0px;
+}
+
+.bblock {
+    padding-top: -10px;
+    border-radius: 5px 100px 100px 100px;
+	display: table-cell; 
+    font-size: 32px;
+  	width: 50%;
+    height: 200px;
+	background: rgb(80, 162, 238);
+    border: 3px solid rgb(255, 255, 255);
+    text-align: center;
+}
+
+.text2 {
+    font-size: 40;
+    color: black;
+    padding-top: 68px;
+    text-align: center;
+}
+
+.strange_text {
+    padding: 20px;
+}
+
+/*==========*/
+
+
+
+/*===== КРУЖКИ С ! =====*/
+
+.circle {
+    background: red;
+    border-radius: 20px;
+    width: 40px;
+    height: 40px;
+    color: black;
+    font-size: 30;
+    text-align: center;
+    padding: 0px;
+    position: absolute;
+    margin-top: -15px;
+    margin-left: -15px;
+}
+
+/*==========*/
