@@ -1,4 +1,4 @@
-# ReactJS Project
+# ReactJS ToDoList project
 ## HSE Course
 
 javascript web-programming
