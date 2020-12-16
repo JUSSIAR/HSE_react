@@ -2,7 +2,7 @@
 @import '../../styleModules/mixins.module.scss';
 
 .content {
-    margin-bottom: 1000px;
+    margin-bottom: 2rem;
     margin-top: 2rem;
     background: $contrastColor;
     //border: 3px solid rgb(47, 50, 255);
@@ -14,10 +14,6 @@
     );
     font-weight: lighter;
     @include flexSettings ($fb: 60%);
-}
-
-@media (min-width: 2500px) {
-    .content {margin-bottom: 5000px;}
 }
 
 .linkToHome {
