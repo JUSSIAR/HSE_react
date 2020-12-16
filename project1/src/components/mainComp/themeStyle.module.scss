@@ -2,12 +2,13 @@
 @import '../../styleModules/mixins.module.scss';
 
 .back {
+    min-height: 100vh;
     width: 100%;
     height: 100%;
     @include flexSettings (
         $fd: row,
         $jc: space-around,
-        $ai: center
+        $ai: flex-start
     );
     &-Default {
         background: linear-gradient(-20deg,  #8a847e, #a3a7cc);
