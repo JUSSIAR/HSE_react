@@ -49,7 +49,7 @@
 @mixin header1 {
     text-align: center;
     @include fontSettings(
-        $fsz: 50,
+        $fsz: 30px,
         $fst: normal,
         $ffm: Arial,
         $fwg: bold,

@@ -4,3 +4,13 @@
 #header1 {
     @include header1;
 }
+
+.noProject {
+    text-align: center;
+    @include fontSettings(
+        $fsz: 25px,
+        $fst: normal,
+        $ffm: Arial,
+        $clr: white
+    );
+}

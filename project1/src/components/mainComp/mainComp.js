@@ -39,7 +39,7 @@ class MainComp extends React.Component {
               <Route exact path="/" component={StartPage} />
               <Route exact path="/projects" component={ProjectList} />
               <Route exact path="/info" component={Info} />
-              <Route path="/projects/:projectId/" component={Project} />
+              <Route exact path="/projects/:projectId(\d+)/" component={Project} />
 
               <Route exact path="/404" component={Err404Page} />
               <Redirect to="/404" />

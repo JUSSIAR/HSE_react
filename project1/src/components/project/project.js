@@ -50,22 +50,39 @@ class Project extends React.Component {
     const index = this.props.projects.findIndex(it => (it.projectId === Number(projectId)));
     return (
       <React.StrictMode>
-        <div id = "header1">
-          <h1>
-            ToDoList {this.props.projects[index].projectName}
-          </h1>
-        </div>
-        <GWLine/>
-        <TaskList
-          projectIdx = {projectId}
-        />
-        <GWLine/>
-        <NewCase
-          index = {projectId}
-          props = {this.state.form}
-          changeName = {this.changeNewName}
-          changeDescription = {this.changeNewDescription}
-        />
+        {(0 <= index && index < this.props.projects.length)
+          ? <React.StrictMode>
+            <div id = "header1">
+              <h1>
+                ToDoList {this.props.projects[index].projectName}
+              </h1>
+            </div>
+            <GWLine/>
+            <TaskList
+              projectIdx = {projectId}
+            />
+            <GWLine/>
+            <NewCase
+              index = {projectId}
+              props = {this.state.form}
+              changeName = {this.changeNewName}
+              changeDescription = {this.changeNewDescription}
+            />
+          </React.StrictMode>
+          : <React.StrictMode>
+             <div id = "header1">
+              <h1>
+                ToDoList is Empty
+              </h1>
+            </div>
+            <GWLine/>
+            <p className="noProject">
+              No any project with id {projectId}
+            </p>
+            <br/> <br/>
+            
+          </React.StrictMode>
+        }
         <br/>
         <Link to="/" className="linkToHome"> На главную </Link>
         <br/>
