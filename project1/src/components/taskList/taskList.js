@@ -54,7 +54,7 @@ const TaskListComp = ({
   )
 }
 
-TaskList.propTypes = {
+TaskListComp.propTypes = {
 
   projectIdx: PropTypes.number.isRequired,
   projects: PropTypes.arrayOf(PropTypes.shape({
