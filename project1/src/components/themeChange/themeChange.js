@@ -1,5 +1,6 @@
 import React from 'react';
 import './themeChangeStyle.scss';
+import PropTypes from 'prop-types';
 
 import { connect } from "react-redux";
 import { actionChangeTheme } from "../../actions/theme";
@@ -32,5 +33,18 @@ class Themes extends React.Component {
     )
   }
 }
+
+Themes.propTypes = {
+
+  dispatchOnThemeChange: PropTypes.func.isRequired,
+  theme: PropTypes.string
+
+};
+
+Themes.defaultProps = {
+
+  theme: defaultTheme
+
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Themes);

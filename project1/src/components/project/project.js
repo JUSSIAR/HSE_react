@@ -1,5 +1,6 @@
 import React from 'react';
 import './projectStyle.scss';
+import PropTypes from 'prop-types';
 
 import GWLine from '../gwLine/gwLine.js';
 import TaskList from '../taskList/taskList.js';
@@ -89,6 +90,30 @@ class Project extends React.Component {
       </React.StrictMode>
     );
   }
+}
+
+Project.propTypes = {
+
+  projects: PropTypes.arrayOf(PropTypes.shape({
+
+    projectId: PropTypes.number.isRequired,
+    projectName: PropTypes.string.isRequired,
+    tasks: PropTypes.arrayOf(PropTypes.shape({
+
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+      completed: PropTypes.oneOfType([
+
+        PropTypes.number,
+        PropTypes.bool
+
+      ]).isRequired
+
+    })).isRequired
+
+  })).isRequired
+
 }
 
 export default connect(mapStateToProps)(withRouter(Project));

@@ -1,5 +1,6 @@
 import React from 'react';
 import './taskStyle.scss';
+import PropTypes from 'prop-types';
 
 import classNames from 'classnames/bind';
 import styles from './taskStyleCompl.module.scss';
@@ -54,5 +55,25 @@ const Task = ({
     </div>
   )
 }
+
+Task.propTypes = {
+
+  props: PropTypes.shape({
+
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    completed: PropTypes.oneOfType([
+
+      PropTypes.number,
+      PropTypes.bool
+
+    ]).isRequired,
+  }).isRequired,
+  click: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
+  projectId : PropTypes.number.isRequired
+
+};
 
 export default Task;

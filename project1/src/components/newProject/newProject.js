@@ -2,6 +2,7 @@ import React from 'react';
 import InputNewName from '../input/inputName.js';
 import MyButton from '../button/button.js';
 import './newProjectStyle.scss';
+import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 
@@ -43,5 +44,20 @@ const NewProjectComp = ({
   )
 }
 
+NewProjectComp.propTypes = {
+
+  projectName: PropTypes.string, 
+  changeName: PropTypes.func.isRequired, 
+  dispatchOnPushNewProject: PropTypes.func.isRequired
+
+};
+
+NewProjectComp.defaultProps = {
+
+  projectName: "NoName"
+
+};
+
 const NewProject = connect(mapStateToProps, mapDispatchToProps)(NewProjectComp);
+
 export default NewProject;

@@ -3,6 +3,7 @@ import InputNewName from '../input/inputName.js';
 import InputNewDesciption from '../input/inputDescription.js';
 import MyButton from '../button/button.js';
 import './newCaseStyle.scss';
+import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 
@@ -52,5 +53,28 @@ const NewCaseComp = ({
   )
 }
 
+NewCaseComp.propTypes = {
+
+  index: PropTypes.number.isRequired,
+  props: PropTypes.shape({
+
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    completed: PropTypes.oneOfType([
+
+      PropTypes.number,
+      PropTypes.bool
+
+    ])
+
+  }).isRequired, 
+  changeName: PropTypes.func.isRequired, 
+  changeDescription: PropTypes.func.isRequired,
+  dispatchOnPushNewItem: PropTypes.func.isRequired
+
+};
+
 const NewCase = connect(mapStateToProps, mapDispatchToProps)(NewCaseComp);
+
 export default NewCase;

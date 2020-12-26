@@ -1,6 +1,7 @@
 import React from 'react';
 import Task from '../task/task.js';
 import './taskListStyle.scss';
+import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 
@@ -53,5 +54,33 @@ const TaskListComp = ({
   )
 }
 
+TaskList.propTypes = {
+
+  projectIdx: PropTypes.number.isRequired,
+  projects: PropTypes.arrayOf(PropTypes.shape({
+
+    projectId: PropTypes.number.isRequired,
+    projectName: PropTypes.string.isRequired,
+    tasks: PropTypes.arrayOf(PropTypes.shape({
+
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+      completed: PropTypes.oneOfType([
+
+        PropTypes.number,
+        PropTypes.bool
+
+      ]).isRequired
+
+    })).isRequired
+
+  })).isRequired,
+  dispatchOnChangeStatus: PropTypes.func.isRequired,
+  dispatchOnEraseTask: PropTypes.func.isRequired
+
+};
+
 const TaskList = connect(mapStateToProps, mapDispatchToProps)(TaskListComp);
+
 export default TaskList;

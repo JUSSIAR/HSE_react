@@ -1,7 +1,8 @@
 import React from 'react';
 import GWLine from '../gwLine/gwLine.js';
 import { Link } from 'react-router-dom';
-import './projectListStyle.scss'
+import './projectListStyle.scss';
+import PropTypes from 'prop-types';
 
 import { connect } from "react-redux";
 import NewProject from '../newProject/newProject.js';
@@ -63,6 +64,36 @@ class ProjectList extends React.Component {
       </React.StrictMode>
     );
   }
+}
+
+ProjectList.propTypes = {
+
+  projects: PropTypes.arrayOf(PropTypes.shape({
+
+    projectId: PropTypes.number.isRequired,
+    projectName: PropTypes.string.isRequired,
+    tasks: PropTypes.arrayOf(PropTypes.shape({
+
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+      completed: PropTypes.oneOfType([
+
+        PropTypes.number,
+        PropTypes.bool
+
+      ]).isRequired
+
+    })).isRequired
+
+  }))
+
+}
+
+ProjectList.defaultProps = {
+
+  projects: []
+  
 }
 
 export default connect(mapStateToProps)(ProjectList);
