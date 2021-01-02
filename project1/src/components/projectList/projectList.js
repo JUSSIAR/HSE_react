@@ -23,6 +23,10 @@ class ProjectList extends React.Component {
     })
   }
 
+  componentDidMount() {
+    
+  }
+
   render() {
     return (
       <React.StrictMode>
