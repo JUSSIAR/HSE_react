@@ -3,7 +3,7 @@ import { loadTasks } from '../client-server/request';
 
 export const actionLoadTasks = (projectId) => (dispatch, getState) => {
     //console.log(getState());
-    loadTasks(projectId).then((response) => {
+    return loadTasks(projectId).then((response) => {
         dispatch({
             type : load_tasks,
             payload : {
@@ -11,5 +11,6 @@ export const actionLoadTasks = (projectId) => (dispatch, getState) => {
                 response
             }
         });
+        return response;
     })
 } 

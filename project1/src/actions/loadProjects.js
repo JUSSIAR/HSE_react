@@ -3,10 +3,11 @@ import { loadProjects } from '../client-server/request';
 
 export const actionLoadProjects = () => (dispatch, getState) => {
     //console.log(getState());
-    loadProjects().then((response) => {
+    return loadProjects().then((response) => {
         dispatch({
             type : load_projects,
             payload : response
         });
+        return response;
     })
 }

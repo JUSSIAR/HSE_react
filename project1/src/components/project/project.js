@@ -56,7 +56,9 @@ class Project extends React.Component {
 
   componentDidMount() {
     const { projectId } = this.props.match.params;
-    this.props.fetchTasks(Number(projectId));
+    this.props.fetchProjects().then((response) => {
+      this.props.fetchTasks(Number(projectId));
+    });
   }
 
   render() {
