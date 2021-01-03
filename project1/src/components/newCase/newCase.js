@@ -8,6 +8,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { actionPushNewItem } from '../../actions/pushNewItem';
+import { actionLoadTasks } from '../../actions/loadTasks';
+import { pushTask } from '../../client-server/request';
 
 import { withRouter } from 'react-router-dom';
 
@@ -16,41 +18,41 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  dispatchOnPushNewItem: (projectId, item) => dispatch(actionPushNewItem(projectId, item))
+  //dispatchOnPushNewItem: (projectId, item) => dispatch(actionPushNewItem(projectId, item)),
+  fetchTasks: (projectId) => dispatch(actionLoadTasks(projectId)),
 });
 
-const NewCaseComp = ({
-  index,
-  props, 
-  changeName, 
-  changeDescription,
-  dispatchOnPushNewItem
-}) => {
+class NewCaseComp extends React.Component {
 
-  const click = () => {
-    dispatchOnPushNewItem(Number(index), props);
+  click = () => {
+    //dispatchOnPushNewItem(Number(index), props);
+    pushTask(Number(this.props.index), this.props.props).then((response) => {
+      this.props.fetchTasks(Number(this.props.index));
+    });
   }
 
-  return (
-    <div className = "newCase">
-      <fieldset title = "Добавление нового задания">
-      <legend> <h3>Creating Form</h3> </legend>
-      <InputNewName
-        value = {props.name}
-        onChange = {changeName}
-      />
-      <InputNewDesciption
-        value = {props.description}
-        onChange = {changeDescription}
-      />
-      <MyButton 
-        onClick = {click}
-        taskId = {undefined}
-        value = "Push a new case!"
-      />
-      </fieldset>
-    </div>
-  )
+  render() {
+    return (
+      <div className = "newCase">
+        <fieldset title = "Добавление нового задания">
+        <legend> <h3>Creating Form</h3> </legend>
+        <InputNewName
+          value = {this.props.props.name}
+          onChange = {this.props.changeName}
+        />
+        <InputNewDesciption
+          value = {this.props.props.description}
+          onChange = {this.props.changeDescription}
+        />
+        <MyButton 
+          onClick = {this.click}
+          taskId = {undefined}
+          value = "Push a new case!"
+        />
+        </fieldset>
+      </div>
+    )
+  }
 }
 
 NewCaseComp.propTypes = {
@@ -75,6 +77,6 @@ NewCaseComp.propTypes = {
 
 };
 
-const NewCase = connect(mapStateToProps, mapDispatchToProps)(NewCaseComp);
+//const NewCase = connect(mapStateToProps, mapDispatchToProps)(NewCaseComp);
 
-export default NewCase;
+export default connect(mapStateToProps, mapDispatchToProps)(NewCaseComp);

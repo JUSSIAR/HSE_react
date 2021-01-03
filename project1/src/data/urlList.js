@@ -1,1 +1,1 @@
-const baseURL = 'http://valerystatinov.com/api';
+export const baseURL = 'http://valerystatinov.com/api';

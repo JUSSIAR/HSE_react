@@ -10,9 +10,17 @@ import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 
+import { actionLoadTasks } from '../../actions/loadTasks';
+import { actionLoadProjects } from '../../actions/loadProjects';
+
 const mapStateToProps = (state) => ({
   projects : state.projectList.projectList
 })
+
+const mapDispatchToProps = (dispatch) => ({
+  fetchTasks: (projectId) => dispatch(actionLoadTasks(projectId)),
+  fetchProjects : () => dispatch(actionLoadProjects())
+});
 
 class Project extends React.Component {
   state = {
@@ -44,6 +52,11 @@ class Project extends React.Component {
         }
       };
     })
+  }
+
+  componentDidMount() {
+    const { projectId } = this.props.match.params;
+    this.props.fetchTasks(Number(projectId));
   }
 
   render() {
@@ -116,4 +129,4 @@ Project.propTypes = {
 
 }
 
-export default connect(mapStateToProps)(withRouter(Project));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Project));

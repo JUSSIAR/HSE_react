@@ -7,9 +7,15 @@ import PropTypes from 'prop-types';
 import { connect } from "react-redux";
 import NewProject from '../newProject/newProject.js';
 
+import { actionLoadProjects } from '../../actions/loadProjects';
+
 const mapStateToProps = (state) => ({
   projects : state.projectList.projectList
 });
+
+const mapDispatchToProps = (dispatch) => ({
+  fetchProjects : () => dispatch(actionLoadProjects())
+})
 
 class ProjectList extends React.Component {
   state = {
@@ -20,11 +26,11 @@ class ProjectList extends React.Component {
     const { value } = event.target;
     this.setState({
       projectName: value
-    })
+    });
   }
 
   componentDidMount() {
-    
+    this.props.fetchProjects();
   }
 
   render() {
@@ -72,25 +78,27 @@ class ProjectList extends React.Component {
 
 ProjectList.propTypes = {
 
-  projects: PropTypes.arrayOf(PropTypes.shape({
+  // projects: PropTypes.arrayOf(PropTypes.shape({
 
-    projectId: PropTypes.number.isRequired,
-    projectName: PropTypes.string.isRequired,
-    tasks: PropTypes.arrayOf(PropTypes.shape({
+  //   projectId: PropTypes.number.isRequired,
+  //   projectName: PropTypes.string.isRequired,
+  //   tasks: PropTypes.arrayOf(PropTypes.shape({
 
-      id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
-      description: PropTypes.string.isRequired,
-      completed: PropTypes.oneOfType([
+  //     id: PropTypes.number.isRequired,
+  //     name: PropTypes.string.isRequired,
+  //     description: PropTypes.string.isRequired,
+  //     completed: PropTypes.oneOfType([
 
-        PropTypes.number,
-        PropTypes.bool
+  //       PropTypes.number,
+  //       PropTypes.bool
 
-      ]).isRequired
+  //     ]).isRequired
 
-    })).isRequired
+  //   })).isRequired
 
-  }))
+  // }))
+
+  projects: PropTypes.array
 
 }
 
@@ -100,4 +108,4 @@ ProjectList.defaultProps = {
   
 }
 
-export default connect(mapStateToProps)(ProjectList);
+export default connect(mapStateToProps, mapDispatchToProps)(ProjectList);

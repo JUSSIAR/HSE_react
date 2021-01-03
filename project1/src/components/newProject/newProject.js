@@ -7,23 +7,32 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { actionPushNewProject } from '../../actions/pushNewProject';
+import { actionLoadProjects } from '../../actions/loadProjects';
+
+import { pushProject } from '../../client-server/request';
+import { push_new_project } from '../../data/actiontypes.js';
 
 const mapStateToProps = (state) => ({
   projects : state.projectList.projectList
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  dispatchOnPushNewProject: (project) => dispatch(actionPushNewProject(project))
+  //dispatchOnPushNewProject : (project) => dispatch(actionPushNewProject(project)),
+  fetchProjects : () => dispatch(actionLoadProjects())
 });
 
 const NewProjectComp = ({
   projectName, 
   changeName, 
-  dispatchOnPushNewProject
+  //dispatchOnPushNewProject,
+  fetchProjects
 }) => {
 
   const click = () => {
-    dispatchOnPushNewProject(projectName);
+    //dispatchOnPushNewProject({projectName});
+    pushProject({projectName}).then((response) => {
+      fetchProjects();
+    });
   }
 
   return (

@@ -7,32 +7,46 @@ import { connect } from 'react-redux';
 
 import { actionChangeStatus } from "../../actions/changeStatus";
 import { actionEraseTask } from "../../actions/eraseTask";
+import { actionLoadTasks } from '../../actions/loadTasks.js';
+
+import { changeTaskStatus } from '../../client-server/request';
 
 const mapStateToProps = (state) => ({
   projects : state.projectList.projectList
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  dispatchOnChangeStatus: (projectId, taskId) => dispatch(actionChangeStatus(projectId, taskId)),
-  dispatchOnEraseTask: (projectId, taskId) => dispatch(actionEraseTask(projectId, taskId))
+  //dispatchOnChangeStatus: (projectId, taskId) => dispatch(actionChangeStatus(projectId, taskId)),
+  //dispatchOnEraseTask: (projectId, taskId) => dispatch(actionEraseTask(projectId, taskId)),
+  fetchTasks : (projectId) => dispatch(actionLoadTasks(projectId))
 })
 
 const TaskListComp = ({
   projectIdx,
   projects,
-  dispatchOnChangeStatus,
-  dispatchOnEraseTask
+  //dispatchOnChangeStatus,
+  //dispatchOnEraseTask,
+  fetchTasks
 }) => {
 
+  const index = projects.findIndex((proj) => (proj.projectId === Number(projectIdx)));
+
   const eraseTask = (projectId, taskId) => {
-    dispatchOnEraseTask(projectId, taskId);
+    //dispatchOnEraseTask(projectId, taskId);
+    alert("Unfortunatelly, it doesn't work now...");
   }
 
   const changeStatus = (projectId, taskId) => {
-    dispatchOnChangeStatus(projectId, taskId);
+    //dispatchOnChangeStatus(projectId, taskId);
+
+    const projectIndexInArr = index;
+    const taskIndexInArr = projects[index].tasks.findIndex((task) => (task.id === Number(taskId)));
+
+    changeTaskStatus(projectId, taskId, projects[projectIndexInArr].tasks[taskIndexInArr]).then((response) => {
+      fetchTasks(projectId);
+    })
   }
 
-  const index = projects.findIndex((proj) => (proj.projectId === Number(projectIdx)));
   return (
     <React.StrictMode>
       <div className = "TaskList">

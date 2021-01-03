@@ -4,6 +4,7 @@ import { errorLoadProj } from '../data/errorTypes';
 import { errorLoadTask } from '../data/errorTypes';
 import { errorPushTask } from '../data/errorTypes';
 import { errorChngTask } from '../data/errorTypes';
+import { errorPushProj } from '../data/errorTypes'; 
 
 const resultObject = {
     ok : false,
@@ -13,6 +14,12 @@ const resultObject = {
 const newRO = () => ({
     ok : resultObject.ok,
     result : resultObject.result
+})
+
+const convertProjectToMyFormat = (project) => ({
+    projectId: project.id,
+    projectName: project.name,
+    tasks: []
 })
 
 const convertTaskToMyFormat = (task) => ({
@@ -26,80 +33,107 @@ const Request = (url, method='GET', body=undefined) => {
     return fetch(url, {
         method: method,
         headers: {
-            Token: "JUSSIAR",
-            'Content-type': "application/json"
+            Token: 'JUSSIAR',
+            'Content-type': 'application/json',
         },
         body: JSON.stringify(body)
-    }).then(res => res.json());
+    })
 }
 
-function errorPrinter(what, error) {
+function errorPrinter(what, error=undefined) {
     console.log(what);
-    console.error(error);
+    //console.error(error);
 }
 
 export function loadProjects() {
     const url = `${baseURL}/projects/`;
-    let projects = newRO();
-    Request(url, 'GET', undefined).then((res) => {
-        projects.result = res;
-        projects.ok = true;
-    }).catch((error) => {
-        projects.result = [];
-        errorPrinter(error, errorLoadProj);
+    return Request(url, 'GET', undefined).then((response) => {
+        if (!response.ok) {
+            errorPrinter(errorLoadProj);
+            throw new Error(response.statusText);
+        }
+        return response;
+    }).then((response) => {
+        return response.json();
+    }).then((response) => {
+        return response.map(element => {
+            return convertProjectToMyFormat(element);
+        });
     });
-    return projects;
 }
 
 export function loadTasks(projectId) {
-    id = String(projectId);
+    const id = String(projectId);
     const url = `${baseURL}/projects/${id}/tasks/`;
-    let tasks = newRO();
-    Request(url, 'GET', undefined).then((res) => {
-        tasks.result = res.map(element => {
+    return Request(url, 'GET', undefined).then((response) => {
+        if (!response.ok) {
+            errorPrinter(errorLoadTask);
+            throw new Error(response.statusText);
+        }
+        return response;
+    }).then((response) => {
+        return response.json();
+    }).then((response) => {
+        return response.map(element => {
             return convertTaskToMyFormat(element);
         });
-        tasks.ok = true;
-    }).catch((error) => {
-        tasks.result = [];
-        errorPrinter(error, errorLoadTask);
-    });
-    return tasks;
+    })
 }
 
 export function changeTaskStatus(projectId, taskId, task) {
-    idProj = String(projectId);
-    idTask = String(taskId);
+    const idProj = String(projectId);
+    const idTask = String(taskId);
     const url = `${baseURL}/projects/${idProj}/tasks/${idTask}/`;
-    let answer = newRO();
     const requestBody = {
         name: task.name,
         description: task.description,
-        priority: task.priority,
-        completed : (task.completed === 1) ? true : false,
+        priority: 1,
+        completed : (task.completed === 0) ? true : false,
         projectId : projectId
     };
-    Request(url, 'PUT', requestBody).then((res) => {
-        answer.ok = true;
-    }).catch((error) => {
-        errorPrinter(error, errorChngTask);
-    })
-    return answer;
+    return Request(url, 'PUT', requestBody).then((response) => {
+        //console.log(response);
+        if (!response.ok) {
+            errorPrinter(errorChngTask);
+            throw new Error(response.statusText);
+        }
+        return response;
+    }) 
+}
+
+export function pushProject(newProject) {
+    const url = `${baseURL}/projects/`;
+    const requestBody = {
+        name: newProject.projectName,
+    };
+    return Request(url, 'POST', requestBody).then((response) => {
+        //console.log(response);
+        if (!response.ok) {
+            errorPrinter(errorPushProj);
+            throw new Error(response.statusText);
+        }
+        return response;
+    }).then((response) => {
+        return response.json();
+    })    
 }
 
 export function pushTask(projectId, newTask) {
-    id = String(projectId);
+    const id = String(projectId);
     const url = `${baseURL}/projects/${id}/tasks/`;
-    let answer = newRO();
     const requestBody = {
-        name: task.name,
-        description: task.description,
-        priority: Math.random()
+        name: newTask.name,
+        description: newTask.description,
+        priority: 1//Math.round(Math.random())
     };
-    Request(url, 'POST', requestBody).then((res) => {
-        answer.ok = true;
-    }).catch((error) => {
-        errorPrinter(error, errorPushTask);
-    })
-    return answer;
+    return Request(url, 'POST', requestBody).then((response) => {
+        console.log(response);
+        if (!response.ok) {
+            errorPrinter(errorPushTask);
+            //throw new Error(response.statusText);
+        }
+        return response;
+    }).then((response) => {
+        return response.json();
+    }) 
 }
