@@ -12,6 +12,10 @@ export default function StartPage() {
       </div> 
       <GWLine/>
       <div id = "routerId">
+        <div className="authButtonBlock">
+          <Link to="/signIn" className="authElement"> Sign IN </Link>
+          <Link to="/signUp" className="authElement"> Sign UP </Link>
+        </div>
         <ul>
           <li>
             <Link to="/projects" className="route1"> Projects </Link>
@@ -24,6 +28,12 @@ export default function StartPage() {
             <br/><br/>
           </li>
         </ul>
+        <footer>
+          <hr/>
+          <div id = "mail_box"> 
+              <a title = "Обратная связь" href = "mailto:saklokov@edu.hse.ru" id = "mail"> saklokov@edu.hse.ru </a>
+          </div>
+        </footer>
       </div>
     </React.StrictMode>
   );
