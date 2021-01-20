@@ -10,5 +10,6 @@ javascript web-programming
 - flex layout
 - scss(sass)
 - classnames(conditional styles)
+- PropTypes(props validation)
 
 Licensed under the [MIT License](LICENSE)
