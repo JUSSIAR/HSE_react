@@ -1,0 +1,36 @@
+@import '../../styleModules/mixins.module.scss';
+@import '../../styleModules/var.module.scss';
+
+#authHeader {
+    @include header1;
+    & > h1 {
+        font-family: 'Times New Roman', Times, serif;
+    }
+}
+
+fieldset {
+    @include borderSettings (
+        $wdt: 5px,
+        $rad: 20px,
+        $clr: $primaryColor
+    );
+}
+
+legend {
+    @include fontSettings (
+        $fst: italic,
+        $ffm: 'Times New Roman',
+        $fwg: bold,
+        $clr: white
+    );
+    @include borderSettings (
+        $wdt: 5px,
+        $rad: 10px,
+        $clr: $primaryColor
+    );
+}
+
+.auth {
+    font-size: 20;
+    padding: 20px;
+}

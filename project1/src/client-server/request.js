@@ -50,7 +50,7 @@ export function loadProjects() {
     return Request(url, 'GET', undefined).then((response) => {
         if (!response.ok) {
             errorPrinter(errorLoadProj);
-            throw new Error(response.statusText);
+            //throw new Error(response.statusText);
         }
         return response;
     }).then((response) => {
@@ -68,7 +68,7 @@ export function loadTasks(projectId) {
     return Request(url, 'GET', undefined).then((response) => {
         if (!response.ok) {
             errorPrinter(errorLoadTask);
-            throw new Error(response.statusText);
+            //throw new Error(response.statusText);
         }
         return response;
     }).then((response) => {
@@ -95,7 +95,7 @@ export function changeTaskStatus(projectId, taskId, task) {
         //console.log(response);
         if (!response.ok) {
             errorPrinter(errorChngTask);
-            throw new Error(response.statusText);
+            //throw new Error(response.statusText);
         }
         return response;
     }) 
@@ -110,7 +110,7 @@ export function pushProject(newProject) {
         //console.log(response);
         if (!response.ok) {
             errorPrinter(errorPushProj);
-            throw new Error(response.statusText);
+            //throw new Error(response.statusText);
         }
         return response;
     }).then((response) => {
