@@ -10,7 +10,7 @@
 Web-application with client-server communication
 
 # Technologies
-- RactJS
+- ReactJS
 - Redux
 - Router
 - flex layout
