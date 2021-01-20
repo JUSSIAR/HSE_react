@@ -1,3 +1,32 @@
+# ToDoList
+
+### Table of contents
+* [General info](#general-info)
+* [Technologies](#technologies)
+* [Setup](#setup)
+* [Available Scripts](#available-scripts)
+
+# General info
+Web-application with client-server communication
+
+# Technologies
+- RactJS
+- Redux
+- Router
+- flex layout
+- scss(sass)
+- classnames(conditional styles)
+
+# Setup
+```sh
+$ sudo apt install nodejs
+$ sudo apt install npm
+$ npm install
+```
+
+> Read the stuff at the bottom for testing, running or building this application.
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
