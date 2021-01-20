@@ -16,6 +16,7 @@ Web-application with client-server communication
 - flex layout
 - scss(sass)
 - classnames(conditional styles)
+- PropTypes(props validation)
 
 # Setup
 ```sh
