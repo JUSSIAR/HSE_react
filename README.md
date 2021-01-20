@@ -4,7 +4,7 @@
 javascript web-programming
 
 ## Technologies
-- RactJS
+- ReactJS
 - Redux
 - Router
 - flex layout
