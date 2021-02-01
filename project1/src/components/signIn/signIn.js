@@ -8,6 +8,7 @@ import MyButton from '../button/button';
 import GWLine from '../gwLine/gwLine';
 
 import './signInStyle.scss';
+import { signIn } from '../../client-server/request';
 
 class PersonLoggerAuth {
 	static Log(_login, _password) {
@@ -25,6 +26,11 @@ class SignIn extends React.Component {
 	}
 	click = () => {
 		PersonLoggerAuth.Log(this.state.login, this.state.password);
+		signIn(this.state.login, this.state.password).then((data) => {
+			const myStorage = window.localStorage;
+			myStorage.setItem("token", data.token);
+			//console.log(data);
+		})
 	}
 	changeLogin = (event) => {
 		const { value } = event.target;

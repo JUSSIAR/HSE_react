@@ -5,6 +5,8 @@ import { errorLoadTask } from '../data/errorTypes';
 import { errorPushTask } from '../data/errorTypes';
 import { errorChngTask } from '../data/errorTypes';
 import { errorPushProj } from '../data/errorTypes'; 
+import { errorRegister } from '../data/errorTypes';
+import { errorLogin } from '../data/errorTypes'; 
 
 const resultObject = {
     ok : false,
@@ -29,15 +31,29 @@ const convertTaskToMyFormat = (task) => ({
     completed: task.completed ? 1 : 0
 })
 
-const Request = (url, method='GET', body=undefined) => {
-    return fetch(url, {
-        method: method,
-        headers: {
-            Token: 'JUSSIAR',
-            'Content-type': 'application/json',
-        },
-        body: JSON.stringify(body)
-    })
+const Request = (url, method='GET', body=undefined, spec='sess') => {
+    const myStorage = window.localStorage;
+    // console.log(url);
+    // console.log(method);
+    // console.log(JSON.stringify(body));
+    return ((spec === 'auth')
+        ? fetch(url, {
+            method: method,
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify(body)
+        })
+        : fetch(url, {
+            method: method,
+            headers: {
+                //Token: 'JUSSIAR',
+                Token: myStorage.getItem("token"),
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify(body)
+        })
+    )
 }
 
 function errorPrinter(what, error=undefined) {
@@ -131,6 +147,40 @@ export function pushTask(projectId, newTask) {
         if (!response.ok) {
             errorPrinter(errorPushTask);
             //throw new Error(response.statusText);
+        }
+        return response;
+    }).then((response) => {
+        return response.json();
+    }) 
+}
+
+export function signIn(login, password) {
+    const url = `${baseURL}/login/`;
+    const requestBody = {
+        login: String(login),
+        password: String(password)
+    };
+    return Request(url, 'POST', requestBody, 'auth').then((response) => {
+        console.log(response);
+        if (!response.ok) {
+            errorPrinter(errorLogin);
+        }
+        return response;
+    }).then((response) => {
+        return response.json();
+    }) 
+}
+
+export function signUp(login, password) {
+    const url = `${baseURL}/register/`;
+    const requestBody = {
+        login: login,
+        password: password
+    };
+    return Request(url, 'POST', requestBody, 'auth').then((response) => {
+        console.log(response);
+        if (!response.ok) {
+            errorPrinter(errorRegister);
         }
         return response;
     }).then((response) => {
