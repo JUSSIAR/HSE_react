@@ -72,3 +72,14 @@
         $clr: rgb(36, 37, 39)
     );
 }
+
+.userName {
+    background: #00294be1;
+    @include fontSettings (
+        $fsz: 28px,
+        $fwg: bold,
+        $clr: rgb(71, 250, 0)
+    );
+    width: 200px;
+    padding: 5px;
+}

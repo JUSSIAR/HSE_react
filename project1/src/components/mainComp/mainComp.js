@@ -18,6 +18,7 @@ import { connect } from "react-redux";
 
 import { Switch, Route, Redirect } from "react-router-dom";
 import { BrowserRouter as BrowRout } from "react-router-dom";
+import history from './../../history/history';
 
 const cx = classNames.bind(styles);
 
@@ -35,7 +36,7 @@ class MainComp extends React.Component {
             {"back-Winter" : condition === winterTheme}
         )}>
           <div className = "content">
-            <BrowRout>
+            <BrowRout history={history}>
               <Route path="/" component={Themes} />
 
               <Switch>

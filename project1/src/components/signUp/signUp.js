@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 import InputLogin from '../input/inputLogin';
 import InputPassword from '../input/inputPassword';
@@ -8,6 +9,7 @@ import MyButton from '../button/button';
 import GWLine from '../gwLine/gwLine';
 
 import './signUpStyle.scss';
+import { signUp } from '../../client-server/request';
 
 class PersonLoggerReg {
 	static Log(_login, _password) {
@@ -18,13 +20,20 @@ class PersonLoggerReg {
 	}
 }
 
-class SignIn extends React.Component {
+class SignUp extends React.Component {
 	state = {
 		login: "",
 		password: "" 
 	}
 	click = () => {
 		PersonLoggerReg.Log(this.state.login, this.state.password);
+		signUp(this.state.login, this.state.password).then((data) => {
+			const myStorage = window.localStorage;
+			myStorage.setItem("token", data.token);
+			myStorage.setItem("login", this.state.login);
+			this.props.history.push('/');
+			//console.log(data);
+		})
 	}
 	changeLogin = (event) => {
 		const { value } = event.target;
@@ -73,4 +82,4 @@ class SignIn extends React.Component {
 	}
 }
 
-export default SignIn;
+export default withRouter(SignUp);
