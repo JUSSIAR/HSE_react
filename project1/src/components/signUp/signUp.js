@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 import InputLogin from '../input/inputLogin';
 import InputPassword from '../input/inputPassword';
@@ -29,6 +30,8 @@ class SignUp extends React.Component {
 		signUp(this.state.login, this.state.password).then((data) => {
 			const myStorage = window.localStorage;
 			myStorage.setItem("token", data.token);
+			myStorage.setItem("login", this.state.login);
+			this.props.history.push('/');
 			//console.log(data);
 		})
 	}
@@ -79,4 +82,4 @@ class SignUp extends React.Component {
 	}
 }
 
-export default SignUp;
+export default withRouter(SignUp);
